@@ -1,4 +1,4 @@
-## Boilerplate for MERN app with Login/Register App backend
+## Undergrad Semester project for System Analysis and Design
 
 ---
 
