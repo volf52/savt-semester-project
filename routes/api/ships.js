@@ -26,15 +26,6 @@ router.get(
                     .status(400)
                     .json({ name: 'Ship with this name already exists' });
             else {
-                let shipOwner = null;
-                User.findById(req.user.id).then(user => {
-                    if (!user) {
-                        resp.status(400).json({
-                            user: "Ship owner doesn't exist anymore",
-                        });
-                    }
-                });
-
                 let { name, length, width, speed, draft } = req.body;
                 length = parseFloat(length);
                 width = parseFloat(width);
@@ -53,14 +44,22 @@ router.get(
                 newShip
                     .save()
                     .then(ship =>
-                        resp
-                            .status(200)
-                            .json({
-                                msg: 'Ship added',
-                                name,
-                                id: ship._doc._id,
-                                owner: ship._doc.owner,
-                            })
+                        User.findById(req.user.id).then(owner => {
+                            if (owner) {
+                                owner.ships.push(ship);
+                                owner
+                                    .save()
+                                    .then(shipowner => {
+                                        resp.status(200).json({
+                                            msg: 'Ship added',
+                                            name,
+                                            id: ship._doc._id,
+                                            owner: ship._doc.owner,
+                                        });
+                                    })
+                                    .catch(err => console.log(err));
+                            }
+                        })
                     )
                     .catch(err => console.log(err));
             }

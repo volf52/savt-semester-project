@@ -19,10 +19,12 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-    ships: {
-        type: [Schema.Types.ObjectId],
-        ref: 'ships',
-    },
+    ships: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'ships',
+        },
+    ],
 });
 
 module.exports = User = mongoose.model('users', UserSchema);

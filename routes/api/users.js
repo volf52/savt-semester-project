@@ -87,6 +87,7 @@ router.post('/login', (req, resp) => {
                         resp.json({
                             success: true,
                             token: 'Bearer ' + token,
+                            expiresIn: 86400,
                         });
                     }
                 );
