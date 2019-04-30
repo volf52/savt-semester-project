@@ -1,16 +1,20 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 const keys = require('../../config/keys');
 
 const router = express.Router();
 
 // Load input validation
-const validateRegisterInput = require('../../validation/register');
-const validateLoginInput = require('../../validation/login');
+const {
+    validateLoginInput,
+    validateRegisterInput,
+} = require('../../validation');
 
 // Load user model
-const User = require('../../models/User');
+// const User = require('../../models/User');
+const { User } = require('../../models');
 
 // @route POST api/users/register
 // @desc Register user
@@ -78,7 +82,7 @@ router.post('/login', (req, resp) => {
                 jwt.sign(
                     payload,
                     keys.secretKey,
-                    { expiresIn: 31556926 },
+                    { expiresIn: 86400 }, // one day
                     (err, token) => {
                         resp.json({
                             success: true,
@@ -94,5 +98,20 @@ router.post('/login', (req, resp) => {
         });
     });
 });
+
+// @route GET api/users/current
+// @desc return current user
+// @access Private
+router.get(
+    '/current',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        res.json({
+            id: req.user.id,
+            name: req.user.name,
+            email: req.user.email,
+        });
+    }
+);
 
 module.exports = router;
