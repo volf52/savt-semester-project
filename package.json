@@ -1,7 +1,7 @@
 {
-    "name": "boilerplate-mern",
+    "name": "ship-routing",
     "version": "1.0.0",
-    "description": "Boilerplate setup for MERN projects",
+    "description": "SAvT Semester Project",
     "main": "server.js",
     "scripts": {
         "client-install": "yarn --cwd client install",
