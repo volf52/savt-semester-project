@@ -10,7 +10,7 @@
 6. Rename .env.example in config folder to `.env` and add the required keys to it ( it's written which keys you require).
 7. Test the endpoints using `curl` or `Postman` or something similar.
 
-    The api endpoint for registration is `http://localhost:5000/api/users/register` which expects apost request with the `x-www-form-urlencoded` payload with the following keys:
+    The api endpoint for registration is `http://localhost:5000/api/users/register` which expects a post request with the `x-www-form-urlencoded` payload with the following keys:
 
     1. name
     2. email
