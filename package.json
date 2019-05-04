@@ -8,7 +8,8 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "server": "nodemon server.js",
         "client": "yarn --cwd client start",
-        "dev": "concurrently \"yarn run server\" \"yarn run client\""
+        "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn --cwd client install && yarn --cwd client run build"
     },
     "keywords": [],
     "author": "Arslan <rslnkrmt2552@gmail.com>",
