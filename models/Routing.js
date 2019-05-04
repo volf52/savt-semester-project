@@ -32,6 +32,10 @@ const RouteSchema = Schema({
     geoURL: {
         type: String,
     },
+    date: {
+        type: Date,
+        default: Date.now,
+    },
 });
 
 module.exports = RouteObj = mongoose.model('routes', RouteSchema);
