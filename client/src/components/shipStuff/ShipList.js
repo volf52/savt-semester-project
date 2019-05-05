@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import classnames from 'classnames';
 
 import Spinner from '../common/Spinner';
 import { getShipList } from '../../actions/shipActions';
+import { capitalize } from '../../utils/capitalize';
 
 import ShipItem from './ShipItem';
 
@@ -15,7 +15,7 @@ class ShipList extends Component {
 
     getTableHeader = head => {
         return head.map((item, index) => {
-            return <th key={head + index}>{item}</th>;
+            return <th key={head + index}>{capitalize(item)}</th>;
         });
     };
 
