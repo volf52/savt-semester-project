@@ -39,7 +39,7 @@ class Navbar extends Component {
                 </li>
                 <li>
                     <Link to='/ships' className='black-text'>
-                        Ship List
+                        Ships
                     </Link>
                 </li>
                 {/* <button

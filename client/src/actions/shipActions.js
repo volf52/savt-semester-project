@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ERRORS, PRINT_SHIP_LIST } from './types';
+import { GET_ERRORS, PRINT_SHIP_LIST, REMOVE_SHIP } from './types';
 
 export const getShipList = () => dispatch => {
     axios
@@ -10,6 +10,23 @@ export const getShipList = () => dispatch => {
                 payload: res.data,
             });
         })
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data,
+            })
+        );
+};
+
+export const removeShipFromUser = shipId => dispatch => {
+    axios
+        .post('/api/ships/removeShip', { id: shipId })
+        .then(res =>
+            dispatch({
+                type: REMOVE_SHIP,
+                payload: { msg: res.data, shipId },
+            })
+        )
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,

@@ -7,10 +7,10 @@ const router = express.Router();
 const { User, Ship } = require('../../models');
 const { validateAddShipInput } = require('../../validation');
 
-// @route GET api/ships/addShip
+// @route POST api/ships/addShip
 // @desc Add ship for a user
 // @acccess Private
-router.get(
+router.post(
     '/addShip',
     passport.authenticate('jwt', { session: false }),
     (req, resp) => {
@@ -83,24 +83,16 @@ router.get(
     }
 );
 
-// @route GET api/ships/removeShip
+// @route POST api/ships/removeShip
 // @desc Remove ship
 // @acccess Private
-router.get(
+router.post(
     '/removeShip',
     passport.authenticate('jwt', { session: false }),
     (req, resp) => {
         if (!req.body.id) {
             return resp.status(400).json({ error: 'Ship ID required' });
         }
-
-        // Ship.remove({ _id: req.body.id })
-        //     .then(() => {
-        //         return resp.status(200).json({ msg: 'successful' });
-        //     })
-        //     .catch(err => {
-        //         return resp.status(400).json({ msg: 'failure' });
-        //     });
 
         User.updateOne({ _id: req.user.id }, { $pull: { ships: req.body.id } })
             .then(() => {

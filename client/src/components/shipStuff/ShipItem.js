@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-export default class ShipItem extends Component {
+import { removeShipFromUser } from '../../actions/shipActions';
+
+class ShipItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,6 +15,7 @@ export default class ShipItem extends Component {
     handleRemClick = e => {
         e.preventDefault();
         console.log(this.state.id);
+        this.props.removeShipFromUser(this.state.id);
     };
 
     render() {
@@ -33,3 +38,17 @@ export default class ShipItem extends Component {
         );
     }
 }
+
+ShipItem.propTypes = {
+    removeShipFromUser: PropTypes.func.isRequired,
+    // auth: PropTypes.object.isRequired,
+};
+
+const mapStatesToProps = state => ({
+    auth: state.auth,
+});
+
+export default connect(
+    mapStatesToProps,
+    { removeShipFromUser }
+)(ShipItem);
