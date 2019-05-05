@@ -28,4 +28,13 @@ const ShipSchema = Schema({
     },
 });
 
+// ShipSchema.pre('remove', next => {
+//     console.log('Removing');
+//     this.model('users').updateOne(
+//         { _id: this.owner },
+//         { $pull: { ships: this._id } },
+//         next
+//     );
+// });
+
 module.exports = Ship = mongoose.model('ships', ShipSchema);

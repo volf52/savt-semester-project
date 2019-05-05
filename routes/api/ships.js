@@ -83,4 +83,47 @@ router.get(
     }
 );
 
+// @route GET api/ships/removeShip
+// @desc Remove ship
+// @acccess Private
+router.get(
+    '/removeShip',
+    passport.authenticate('jwt', { session: false }),
+    (req, resp) => {
+        if (!req.body.id) {
+            return resp.status(400).json({ error: 'Ship ID required' });
+        }
+
+        // Ship.remove({ _id: req.body.id })
+        //     .then(() => {
+        //         return resp.status(200).json({ msg: 'successful' });
+        //     })
+        //     .catch(err => {
+        //         return resp.status(400).json({ msg: 'failure' });
+        //     });
+
+        User.updateOne({ _id: req.user.id }, { $pull: { ships: req.body.id } })
+            .then(() => {
+                Ship.findOneAndDelete({ _id: req.body.id })
+                    .then(() => {
+                        return resp
+                            .status(200)
+                            .json({ msg: 'Successfully removed ship' });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        return resp.status(400).json({
+                            err,
+                            msg: 'Failure at Ship findAndDelete stage',
+                        });
+                    });
+            })
+            .catch(err => {
+                return resp
+                    .status(400)
+                    .json({ err, msg: 'Not removed from user' });
+            });
+    }
+);
+
 module.exports = router;
