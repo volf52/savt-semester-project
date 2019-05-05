@@ -11,10 +11,25 @@ class Navbar extends Component {
                             style={{
                                 fontFamily: 'monospace',
                             }}
-                            className='col s5 brand-logo center black-text'>
+                            className='brand-logo center black-text'>
                             <i className='material-icons'>code</i>
                             Ship Routing and Management
                         </Link>
+
+                        <ul
+                            id='nav-mobile'
+                            className='right hide-on-med-and-down'>
+                            <li>
+                                <Link to='/login' className='black-text'>
+                                    Login
+                                </Link>
+                            </li>
+                            <li>
+                                <Link className='black-text' to='/register'>
+                                    Register
+                                </Link>
+                            </li>
+                        </ul>
                     </div>
                 </nav>
             </div>
