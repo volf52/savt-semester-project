@@ -24,10 +24,10 @@ class Landing extends Component {
                 <div className='row'>
                     <div className='col s12 center-align'>
                         <h4>
-                            <b>Hello</b>, placeholder text{' '}
+                            <b>Hello</b>, You{' '}
                         </h4>
                         <p className='flow-text grey-text text-darken-1'>
-                            This is the landing page
+                            Welcome to ... somewhere
                         </p>
                         <br />
                         <Link
