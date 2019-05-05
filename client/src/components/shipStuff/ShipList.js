@@ -1,28 +1,46 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 
 import Spinner from '../common/Spinner';
-import DTable from '../common/DTable';
 import { getShipList } from '../../actions/shipActions';
+
+import ShipItem from './ShipItem';
 
 class ShipList extends Component {
     componentDidMount() {
         this.props.getShipList();
     }
 
+    getTableHeader = head => {
+        return head.map((item, index) => {
+            return <th key={head + index}>{item}</th>;
+        });
+    };
+
+    getTableBody = (headers, data) => {
+        return data.map((item, index) => {
+            return <ShipItem headers={headers} item={item} key={item._id} />;
+        });
+    };
+
     render() {
         const { shipList } = this.props.shipR;
+        const headers = ['name', 'length', 'width', 'speed', 'draft'];
         let content;
         if (shipList === null) {
             content = <Spinner />;
         } else {
+            const thead = this.getTableHeader(headers);
+            const tbody = this.getTableBody(headers, shipList);
             content = (
-                <DTable
-                    headers={['name', 'length', 'width', 'speed', 'draft']}
-                    data={shipList}
-                />
+                <table className='highlight centered responsive-table z-depth-1'>
+                    <thead>
+                        <tr>{thead}</tr>
+                    </thead>
+                    <tbody>{tbody}</tbody>
+                </table>
             );
         }
         return (
