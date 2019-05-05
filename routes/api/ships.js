@@ -24,7 +24,7 @@ router.post(
             if (ship)
                 return resp
                     .status(400)
-                    .json({ name: 'Ship with this name already exists' });
+                    .json({ msg: 'Ship with this name already exists' });
             else {
                 let { name, length, width, speed, draft } = req.body;
 
@@ -47,17 +47,28 @@ router.post(
                                     .save()
                                     .then(shipowner => {
                                         resp.status(200).json({
-                                            msg: 'Ship added',
+                                            msg: 'Ship added successfully',
                                             name,
                                             id: ship._doc._id,
                                             owner: ship._doc.owner,
                                         });
                                     })
-                                    .catch(err => console.log(err));
+                                    .catch(err => {
+                                        console.log(err);
+                                        resp.status(400).json({
+                                            msg:
+                                                'Error adding ship to the user list',
+                                        });
+                                    });
                             }
                         })
                     )
-                    .catch(err => console.log(err));
+                    .catch(err => {
+                        console.log(err);
+                        resp.status(400).json({
+                            msg: 'Error adding ship to database',
+                        });
+                    });
             }
         });
     }

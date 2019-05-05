@@ -10,7 +10,11 @@ import { addShipForUser } from '../../actions/shipActions';
 class AddShip extends Component {
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = this.getInitState();
+    }
+
+    getInitState = () => {
+        return {
             name: '',
             length: '',
             width: '',
@@ -18,7 +22,7 @@ class AddShip extends Component {
             draft: '',
             errors: {},
         };
-    }
+    };
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
@@ -44,11 +48,17 @@ class AddShip extends Component {
             draft,
         };
 
-        this.props.addShipForUser(shipData);
-        toast.success('Ship added successfuly', {
-            position: toast.POSITION.TOP_CENTER,
-        });
-        // this.props.history.push('/ships');
+        this.props
+            .addShipForUser(shipData)
+            .then(res => {
+                this.setState(this.getInitState());
+                toast.success(res.data.msg, {
+                    position: toast.POSITION.TOP_CENTER,
+                });
+            })
+            .catch(err => {
+                toast.error("Ship couldn't be added");
+            });
     };
 
     render() {

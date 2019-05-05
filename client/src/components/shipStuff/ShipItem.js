@@ -14,7 +14,6 @@ class ShipItem extends Component {
 
     handleRemClick = e => {
         e.preventDefault();
-        console.log(this.state.id);
         this.props.removeShipFromUser(this.state.id);
     };
 
@@ -41,7 +40,6 @@ class ShipItem extends Component {
 
 ShipItem.propTypes = {
     removeShipFromUser: PropTypes.func.isRequired,
-    // auth: PropTypes.object.isRequired,
 };
 
 const mapStatesToProps = state => ({

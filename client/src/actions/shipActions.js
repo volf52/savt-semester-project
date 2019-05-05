@@ -36,18 +36,22 @@ export const removeShipFromUser = shipId => dispatch => {
 };
 
 export const addShipForUser = shipData => dispatch => {
-    axios
-        .post('/api/ships/addShip', shipData)
-        .then(res => {
-            dispatch({
-                type: ADD_SHIP,
-                payload: res.data,
-            });
-        })
-        .catch(err =>
-            dispatch({
-                type: GET_ERRORS,
-                payload: err.response.data,
+    return new Promise((resolve, reject) => {
+        axios
+            .post('/api/ships/addShip', shipData)
+            .then(resp => {
+                dispatch({
+                    type: ADD_SHIP,
+                    payload: resp.data,
+                });
+                resolve(resp);
             })
-        );
+            .catch(err => {
+                dispatch({
+                    type: GET_ERRORS,
+                    payload: err.response.data,
+                });
+                reject(err);
+            });
+    });
 };
