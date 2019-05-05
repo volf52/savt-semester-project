@@ -7,19 +7,19 @@ const ShipSchema = Schema({
         required: true,
     },
     length: {
-        type: Schema.Types.Decimal128,
+        type: String,
         required: true,
     },
     width: {
-        type: Schema.Types.Decimal128,
+        type: String,
         required: true,
     },
     speed: {
-        type: Schema.Types.Decimal128,
+        type: String,
         required: true,
     },
     draft: {
-        type: Schema.Types.Decimal128,
+        type: String,
         required: true,
     },
     owner: {

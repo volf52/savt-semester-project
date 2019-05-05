@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
 class Navbar extends Component {
-    onLogoutClick(e) {
+    onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();
-    }
+    };
 
     render() {
         const { isAuthenticated } = this.props.auth;
@@ -29,12 +29,19 @@ class Navbar extends Component {
 
         const authLinks = (
             <ul id='nav-mobile' className='right hide-on-med-and-down'>
-                <a
-                    href=''
-                    onClick={this.onLogoutClick.bind(this)}
-                    className='nav-link black-text'>
-                    Logout
-                </a>
+                <li>
+                    <a
+                        href=''
+                        onClick={this.onLogoutClick}
+                        className='nav-link black-text'>
+                        Logout
+                    </a>
+                </li>
+                <li>
+                    <Link to='/ships' className='black-text'>
+                        Ship List
+                    </Link>
+                </li>
                 {/* <button
                     onClick={this.onLogoutClick.bind(this)}
                     className='btn btn-small waves-effect waves-light hoverable blue accent-3'>

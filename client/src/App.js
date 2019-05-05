@@ -14,6 +14,7 @@ import PrivateRoute from './components/private-route/PrivateRoute';
 import Dashboard from './components/mainapp/Dashboard';
 
 import store from './store';
+import ShipList from './components/shipStuff/ShipList';
 
 if (localStorage.jwtToken) {
     const token = localStorage.jwtToken;
@@ -43,6 +44,11 @@ class App extends Component {
                                 exact
                                 path='/dashboard'
                                 component={Dashboard}
+                            />
+                            <PrivateRoute
+                                exact
+                                path='/ships'
+                                component={ShipList}
                             />
                         </Switch>
                     </div>

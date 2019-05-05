@@ -27,10 +27,6 @@ router.get(
                     .json({ name: 'Ship with this name already exists' });
             else {
                 let { name, length, width, speed, draft } = req.body;
-                length = parseFloat(length);
-                width = parseFloat(width);
-                speed = parseFloat(speed);
-                draft = parseFloat(draft);
 
                 const newShip = new Ship({
                     name,
@@ -64,6 +60,26 @@ router.get(
                     .catch(err => console.log(err));
             }
         });
+    }
+);
+
+// @route GET api/ships/getShipList
+// @desc Get ships for the user
+// @acccess Private
+router.get(
+    '/getShipList',
+    passport.authenticate('jwt', { session: false }),
+    (req, resp) => {
+        User.findById(req.user.id)
+            .populate('ships')
+            .then(ships => {
+                resp.status(200).json(ships.ships);
+            })
+            .catch(err =>
+                resp.status(400).json({
+                    msg: 'Error finding ships for user ' + req.user.name,
+                })
+            );
     }
 );
 
