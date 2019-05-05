@@ -20,7 +20,7 @@ module.exports = function validateRegisterInput(data) {
     }
 
     if (Validator.isEmpty(data.password)) {
-        errrors.password = 'Password field is empty';
+        errors.password = 'Password field is empty';
     }
 
     if (Validator.isEmpty(data.password2))
