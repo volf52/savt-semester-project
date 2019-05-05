@@ -67,12 +67,10 @@ class Navbar extends Component {
 Navbar.propTypes = {
     logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired,
 };
 
 const mapStatesToProps = state => ({
     auth: state.auth,
-    errors: state.errors,
 });
 
 export default connect(
