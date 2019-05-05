@@ -4,6 +4,8 @@ import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './App.css';
 import Navbar from './components/layout/Navbar';
@@ -12,9 +14,10 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import PrivateRoute from './components/private-route/PrivateRoute';
 import Dashboard from './components/mainapp/Dashboard';
+import ShipList from './components/shipStuff/ShipList';
+import AddShip from './components/shipStuff/AddShip';
 
 import store from './store';
-import ShipList from './components/shipStuff/ShipList';
 
 if (localStorage.jwtToken) {
     const token = localStorage.jwtToken;
@@ -35,6 +38,7 @@ class App extends Component {
             <Provider store={store}>
                 <Router>
                     <div className='App'>
+                        <ToastContainer />
                         <Navbar />
                         <Route exact path='/' component={Landing} />
                         <Route exact path='/register' component={Register} />
@@ -49,6 +53,11 @@ class App extends Component {
                                 exact
                                 path='/ships'
                                 component={ShipList}
+                            />
+                            <PrivateRoute
+                                exact
+                                path='/addShip'
+                                component={AddShip}
                             />
                         </Switch>
                     </div>

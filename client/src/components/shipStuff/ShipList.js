@@ -25,6 +25,11 @@ class ShipList extends Component {
         });
     };
 
+    handleAddShipButton = e => {
+        e.preventDefault();
+        this.props.history.push('/addShip');
+    };
+
     render() {
         const { shipList } = this.props.shipR;
         const headers = ['name', 'length', 'width', 'speed', 'draft'];
@@ -47,6 +52,19 @@ class ShipList extends Component {
             <div className='container'>
                 <div style={{ marginTop: '4rem' }} className='row'>
                     <div className='col s12'>{content}</div>
+                </div>
+                <div className='col s12' style={{ paddingLeft: '11.250px' }}>
+                    <button
+                        style={{
+                            width: '150px',
+                            borderRadius: '3px',
+                            letterSpacing: '1.5px',
+                            marginTop: '1rem',
+                        }}
+                        onClick={this.handleAddShipButton}
+                        className='btn btn-large waves-effect waves-light hoverable blue accent-3'>
+                        Add Ship
+                    </button>
                 </div>
             </div>
         );
