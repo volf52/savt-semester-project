@@ -11,10 +11,6 @@ class Landing extends Component {
                     <div className='col s12 center-align'>
                         <h4>
                             <b>Hello</b>, placeholder text{' '}
-                            {/* <span style={{ fontFamily: 'monospace' }}>
-                                SHIP
-                            </span>{' '}
-                            More placeholder */}
                         </h4>
                         <p className='flow-text grey-text text-darken-1'>
                             This is the landing page

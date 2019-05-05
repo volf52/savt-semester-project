@@ -28,7 +28,7 @@ class Dashboard extends Component {
                                 👏
                             </p>
                         </h4>
-                        <button
+                        {/* <button
                             style={{
                                 width: '150px',
                                 borderRadius: '3px',
@@ -38,7 +38,7 @@ class Dashboard extends Component {
                             onClick={this.onLogoutClick}
                             className='btn btn-large waves-effect waves-light hoverable blue accent-3'>
                             Logout
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </div>
