@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Spinner from '../common/Spinner';
+// import Spinner from '../common/Spinner';
 import { capitalize } from '../../utils/capitalize';
 import { getRouteList } from '../../actions/routeActions';
 import { getShipList } from '../../actions/shipActions';
@@ -53,7 +53,8 @@ class RouteList extends Component {
         ];
         let content;
         if (routeList === null) {
-            content = <Spinner />;
+            // content = <Spinner />;
+            content = <p>Wait</p>;
         } else {
             const thead = this.getTableHeader(headers);
             const tbody = this.getTableBody(headers, routeList);

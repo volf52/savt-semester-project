@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Spinner from '../common/Spinner';
+// import Spinner from '../common/Spinner';
 import { getShipList } from '../../actions/shipActions';
 import { capitalize } from '../../utils/capitalize';
 
@@ -35,7 +35,8 @@ class ShipList extends Component {
         const headers = ['name', 'length', 'width', 'speed', 'draft'];
         let content;
         if (shipList === null) {
-            content = <Spinner />;
+            // content = <Spinner />;
+            content = <p>Wait</p>;
         } else {
             const thead = this.getTableHeader(headers);
             const tbody = this.getTableBody(headers, shipList);
