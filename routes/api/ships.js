@@ -49,8 +49,8 @@ router.post(
                                         resp.status(200).json({
                                             msg: 'Ship added successfully',
                                             name,
-                                            id: ship._doc._id,
-                                            owner: ship._doc.owner,
+                                            id: ship._id,
+                                            owner: ship.owner,
                                         });
                                     })
                                     .catch(err => {
@@ -142,8 +142,9 @@ router.get(
         Ship.findById(req.body.shipId)
             .then(ship => {
                 resp.status(200).json({
-                    name: ship._doc.name,
+                    name: ship.name,
                     msg: 'Successful',
+                    id: ship._id,
                 });
             })
             .catch(err =>
