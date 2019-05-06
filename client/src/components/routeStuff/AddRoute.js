@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { toast } from 'react-toastify';
+import M from 'materialize-css';
 
 import { addRouteForUser } from '../../actions/routeActions';
 
@@ -11,6 +12,8 @@ class AddRoute extends Component {
     constructor(props) {
         super(props);
         this.state = this.getInitState();
+        let elems = document.querySelectorAll('select');
+        M.FormSelect.init(elems);
     }
 
     getInitState = () => {
@@ -147,25 +150,23 @@ class AddRoute extends Component {
                                 <label htmlFor='toLng'>Arrival Longitude</label>
                                 <span className='red-text'>{errors.toLng}</span>
                             </div>
-                            <div className='input-field col s12'>
-                                <select
-                                    onChange={this.onChange}
-                                    id={this.state.shipID}>
+                            <div class='input-field col s12'>
+                                <select>
                                     <option value='' disabled selected>
                                         Choose your option
                                     </option>
-                                    {/* <option value='1'>Option 1</option>
+                                    <option value='1'>Option 1</option>
                                     <option value='2'>Option 2</option>
-                                    <option value='3'>Option 3</option> */}
+                                    <option value='3'>Option 3</option>
                                 </select>
-                                <label htmlFor='shipID'>Select Ship</label>
-                                <span className='red-text'>
-                                    {errors.shipID}
-                                </span>
+                                <label>Materialize Select</label>
                             </div>
                             <div
                                 className='col s12'
-                                style={{ paddingLeft: '11.250px' }}>
+                                style={{
+                                    paddingLeft: '11.250px',
+                                    marginTop: '10px',
+                                }}>
                                 <button
                                     style={{
                                         width: '150px',
