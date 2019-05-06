@@ -127,7 +127,7 @@ router.post(
             .catch(err => {
                 return resp
                     .status(400)
-                    .json({ err, msg: 'Not removed from user' });
+                    .json({ err, msg: 'Ship not removed from user' });
             });
     }
 );

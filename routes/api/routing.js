@@ -105,4 +105,62 @@ router.get(
     }
 );
 
+// @route POST api/routing/removeRoute
+// @desc Remove route
+// @acccess Private
+router.post(
+    '/removeRoute',
+    passport.authenticate('jwt', { session: false }),
+    (req, resp) => {
+        if (!req.body.id) {
+            return resp.status(400).json({ error: 'Route ID required' });
+        }
+
+        User.updateOne({ _id: req.user.id }, { $pull: { routes: req.body.id } })
+            .then(modified => {
+                if (modified.nModified === 0) {
+                    throw new Error();
+                }
+                RouteObj.findOneAndDelete({ _id: req.body.id })
+                    .then(() => {
+                        return resp
+                            .status(200)
+                            .json({ msg: 'Successfully removed route' });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        return resp.status(400).json({
+                            err,
+                            msg: 'Failure at route findAndDelete stage',
+                        });
+                    });
+            })
+            .catch(err => {
+                return resp
+                    .status(400)
+                    .json({ err, msg: 'Route not removed from user' });
+            });
+    }
+);
+
+// @route GET api/routing/getRouteList
+// @desc Get routes for the user
+// @acccess Private
+router.get(
+    '/getRouteList',
+    passport.authenticate('jwt', { session: false }),
+    (req, resp) => {
+        User.findById(req.user.id)
+            .populate('routes')
+            .then(routes => {
+                resp.status(200).json(routes.routes);
+            })
+            .catch(err =>
+                resp.status(400).json({
+                    msg: 'Error finding routes for user ' + req.user.name,
+                })
+            );
+    }
+);
+
 module.exports = router;
