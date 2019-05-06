@@ -74,7 +74,7 @@ router.get(
                                     throw new Error();
                                 }
                                 return resp.status(200).json({
-                                    msg: 'Successfully saved',
+                                    msg: 'Routing successful',
                                     geoURL,
                                     total_length: `${tmp.total_length}`,
                                     seca_length: `${tmp.seca_length}`,
