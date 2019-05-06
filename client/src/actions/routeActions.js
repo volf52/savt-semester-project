@@ -6,12 +6,11 @@ import {
     GET_ERRORS,
 } from '../actions/types';
 
-// TODO working
+// NOTE working
 export const getRouteList = () => dispatch => {
     axios
         .get('/api/routing/getRouteList')
         .then(res => {
-            // console.log(res);
             dispatch({
                 type: PRINT_ROUTE_LIST,
                 payload: res.data,
@@ -26,6 +25,7 @@ export const getRouteList = () => dispatch => {
         });
 };
 
+// NOTE working
 export const addRouteForUser = routeData => dispatch => {
     return new Promise((resolve, reject) => {
         axios
@@ -47,7 +47,7 @@ export const addRouteForUser = routeData => dispatch => {
     });
 };
 
-// TODO working
+// NOTE working
 export const removeRouteFromUser = routeId => dispatch => {
     return new Promise((resolve, reject) => {
         axios

@@ -8,9 +8,9 @@ module.exports = function validateCoordInput(data) {
     data.fromLng = !isEmpty(data.fromLng) ? data.fromLng : '';
     data.toLat = !isEmpty(data.toLat) ? data.toLat : '';
     data.toLng = !isEmpty(data.toLng) ? data.toLng : '';
-    data.shipID = !isEmpty(data.shipID) ? data.shipID : '';
+    data.shipId = !isEmpty(data.shipId) ? data.shipId : '';
 
-    if (Validator.isEmpty(data.shipID)) {
+    if (Validator.isEmpty(data.shipId)) {
         errors.ship = 'Ship is required for a journey through the sea';
     }
 

@@ -20,7 +20,7 @@ router.post(
         const { errors, isValid } = validateCoordInput(req.body);
 
         if (!isValid) {
-            return resp.status(400).json({ errors });
+            return resp.status(400).json(errors);
         }
 
         const url = `https://api.aquaplot.com/v1/route/from/${
@@ -42,7 +42,7 @@ router.post(
                 let geoURL = `http://geojson.io/#data=data:application/json,${encoded}`;
                 const route = new RouteObj({
                     user: req.user.id,
-                    ship: req.body.shipID,
+                    ship: req.body.shipId,
                     departure: {
                         lat: req.body.fromLat,
                         lng: req.body.fromLng,

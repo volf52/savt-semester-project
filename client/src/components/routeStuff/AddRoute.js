@@ -20,7 +20,7 @@ class AddRoute extends Component {
             fromLng: '',
             toLat: '',
             toLng: '',
-            shipID: '',
+            shipId: '',
             errors: {},
         };
     };
@@ -36,7 +36,7 @@ class AddRoute extends Component {
     }
 
     handleShipSelect = selectedShip => {
-        this.setState({ ['shipID']: selectedShip.value });
+        this.setState({ shipId: selectedShip.value });
     };
 
     onChange = e => {
@@ -46,15 +46,14 @@ class AddRoute extends Component {
     onSubmit = e => {
         e.preventDefault();
 
-        const { fromLat, fromLng, toLat, toLng, shipID } = this.state;
+        const { fromLat, fromLng, toLat, toLng, shipId } = this.state;
         const routeData = {
             fromLat,
             fromLng,
             toLat,
             toLng,
-            shipID,
+            shipId,
         };
-
         this.props
             .addRouteForUser(routeData)
             .then(res => {
@@ -69,11 +68,12 @@ class AddRoute extends Component {
     };
 
     render() {
-        const { errors } = this.state;
+        let { errors } = this.state;
+
         const options = [
-            { value: 'chocolate', label: 'Chocolate' },
-            { value: 'strawberry', label: 'Strawberry' },
-            { value: 'vanilla', label: 'Vanilla' },
+            { value: '5ccff8625bc6642ed4e811fc', label: 'ship2' },
+            // { value: 'strawberry', label: 'Strawberry' },
+            // { value: 'vanilla', label: 'Vanilla' },
         ];
         return (
             <div className='container'>
@@ -85,29 +85,20 @@ class AddRoute extends Component {
                             </i>{' '}
                             Back to Route List
                         </Link>
-                        {/* <div
+                        <div
                             className='col s12'
                             style={{ paddingLeft: '11.250px' }}>
                             <h4>Add Route</h4>
-                        </div> */}
+                        </div>
                         <form noValidate onSubmit={this.onSubmit}>
-                            <div
-                                className='col s12'
-                                style={{
-                                    paddingLeft: '11.250px',
-                                    marginTop: '10px',
-                                    marginBottom: '20px',
-                                }}>
-                                <button
-                                    style={{
-                                        borderRadius: '3px',
-                                        letterSpacing: '1.5px',
-                                        marginTop: '1rem',
-                                    }}
-                                    type='submit'
-                                    className='btn btn-large waves-effect waves-light hoverable blue accent-3'>
-                                    Add Route
-                                </button>
+                            <div className='input-field col s12'>
+                                <Select
+                                    value={this.state.shipID}
+                                    onChange={this.handleShipSelect}
+                                    options={options}
+                                    placeholder='Select ship...'
+                                />
+                                <span className='red-text'>{errors.ship}</span>
                             </div>
                             <div className='input-field col s12'>
                                 <input
@@ -175,13 +166,23 @@ class AddRoute extends Component {
                                 <label htmlFor='toLng'>Arrival Longitude</label>
                                 <span className='red-text'>{errors.toLng}</span>
                             </div>
-                            <div className='input-field col s12'>
-                                <Select
-                                    value={this.state.shipID}
-                                    onChange={this.handleShipSelect}
-                                    options={options}
-                                    placeholder='Select ship...'
-                                />
+                            <div
+                                className='col s12'
+                                style={{
+                                    paddingLeft: '11.250px',
+                                    marginTop: '10px',
+                                    marginBottom: '20px',
+                                }}>
+                                <button
+                                    style={{
+                                        borderRadius: '3px',
+                                        letterSpacing: '1.5px',
+                                        marginTop: '1rem',
+                                    }}
+                                    type='submit'
+                                    className='btn btn-large waves-effect waves-light hoverable blue accent-3'>
+                                    Add Route
+                                </button>
                             </div>
                         </form>
                     </div>
