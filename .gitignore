@@ -1,8 +1,9 @@
+.DS_Store
 node_modules/
+.env
+*.orig
+.idea/
 .vscode/
-package-lock.json
-yarn.lock
-build
 .env
 
 # dependencies
