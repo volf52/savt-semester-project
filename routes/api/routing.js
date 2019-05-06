@@ -10,10 +10,10 @@ const { RouteObj } = require('../../models');
 
 const router = express.Router();
 
-// @route GET api/routing/getRoute
+// @route POST api/routing/getRoute
 // @desc Get route for the given coordinates
 // @acccess Private
-router.get(
+router.post(
     '/getRoute',
     passport.authenticate('jwt', { session: false }),
     (req, resp) => {
