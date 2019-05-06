@@ -6,21 +6,24 @@ import {
     GET_ERRORS,
 } from '../actions/types';
 
+// TODO working
 export const getRouteList = () => dispatch => {
     axios
         .get('/api/routing/getRouteList')
         .then(res => {
+            // console.log(res);
             dispatch({
                 type: PRINT_ROUTE_LIST,
                 payload: res.data,
             });
         })
-        .catch(err =>
+        .catch(err => {
+            console.log(err);
             dispatch({
                 type: GET_ERRORS,
                 payload: err.response.data,
-            })
-        );
+            });
+        });
 };
 
 export const addRouteForUser = routeData => dispatch => {
@@ -44,6 +47,7 @@ export const addRouteForUser = routeData => dispatch => {
     });
 };
 
+// TODO working
 export const removeRouteFromUser = routeId => dispatch => {
     return new Promise((resolve, reject) => {
         axios
@@ -56,6 +60,7 @@ export const removeRouteFromUser = routeId => dispatch => {
                 resolve(res);
             })
             .catch(err => {
+                console.log(err);
                 dispatch({
                     type: GET_ERRORS,
                     payload: err.response.data,

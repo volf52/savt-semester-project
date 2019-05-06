@@ -8,5 +8,5 @@ export default combineReducers({
     auth: authReducer,
     shipR: shipReducer,
     errors: errorReducer,
-    routesR: routesReducer,
+    routeR: routesReducer,
 });

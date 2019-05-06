@@ -42,7 +42,10 @@ class ShipList extends Component {
             content = (
                 <table className='highlight centered responsive-table z-depth-1'>
                     <thead>
-                        <tr>{thead}</tr>
+                        <tr>
+                            {thead}
+                            <th>Remove</th>
+                        </tr>
                     </thead>
                     <tbody>{tbody}</tbody>
                 </table>

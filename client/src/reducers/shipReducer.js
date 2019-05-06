@@ -1,4 +1,9 @@
-import { PRINT_SHIP_LIST, REMOVE_SHIP, ADD_SHIP } from '../actions/types';
+import {
+    PRINT_SHIP_LIST,
+    REMOVE_SHIP,
+    ADD_SHIP,
+    GET_SHIP_NAME,
+} from '../actions/types';
 
 const initialState = {
     shipList: [],
@@ -19,6 +24,8 @@ export default function(state = initialState, action) {
                 ),
             };
         case ADD_SHIP:
+            return state;
+        case GET_SHIP_NAME:
             return state;
         default:
             return state;

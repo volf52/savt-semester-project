@@ -4,6 +4,7 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const PRINT_SHIP_LIST = 'PRINT_SHIP_LIST';
 export const REMOVE_SHIP = 'REMOVE_SHIP';
 export const ADD_SHIP = 'ADD_SHIP';
+export const GET_SHIP_NAME = 'GET_SHIP_NAME';
 export const ADD_ROUTE = 'ADD_ROUTE';
 export const REMOVE_ROUTE = 'REMOVE_ROUTE';
 export const PRINT_ROUTE_LIST = 'PRINT_ROUTE_LIST';

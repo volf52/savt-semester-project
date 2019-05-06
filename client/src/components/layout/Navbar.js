@@ -42,6 +42,11 @@ class Navbar extends Component {
                         Ships
                     </Link>
                 </li>
+                <li>
+                    <Link to='/routes' className='black-text'>
+                        Routes
+                    </Link>
+                </li>
                 {/* <button
                     onClick={this.onLogoutClick.bind(this)}
                     className='btn btn-small waves-effect waves-light hoverable blue accent-3'>

@@ -14,7 +14,7 @@ export default function(state = initialState, action) {
         case REMOVE_ROUTE:
             return {
                 ...state,
-                routeList: state.shipList.filter(
+                routeList: state.routeList.filter(
                     route => route._id !== action.payload.routeId
                 ),
             };
