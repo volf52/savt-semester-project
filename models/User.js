@@ -25,6 +25,12 @@ const UserSchema = new Schema({
             ref: 'ships',
         },
     ],
+    routes: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'routes',
+        },
+    ],
 });
 
 module.exports = User = mongoose.model('users', UserSchema);

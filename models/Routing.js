@@ -36,6 +36,21 @@ const RouteSchema = Schema({
         type: Date,
         default: Date.now,
     },
+    total_length: {
+        type: String,
+    },
+    seca_length: {
+        type: String,
+    },
+    hra_length: {
+        type: String,
+    },
+    arrivalUtc: {
+        type: String,
+    },
+    durationHours: {
+        type: String,
+    },
 });
 
 module.exports = RouteObj = mongoose.model('routes', RouteSchema);

@@ -106,7 +106,10 @@ router.post(
         }
 
         User.updateOne({ _id: req.user.id }, { $pull: { ships: req.body.id } })
-            .then(() => {
+            .then(modified => {
+                if (modified.nModified === 0) {
+                    throw new Error();
+                }
                 Ship.findOneAndDelete({ _id: req.body.id })
                     .then(() => {
                         return resp
