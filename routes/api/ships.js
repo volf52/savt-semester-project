@@ -94,6 +94,24 @@ router.get(
     }
 );
 
+// @route GET api/ships/getShipName
+// @desc Get ship name to use in other places
+// @access Private
+
+router.get(
+    '/getShipName',
+    passport.authenticate('jwt', { session: false }),
+    (req, resp) => {
+        Ship.findById(req.body.shipId)
+            .then(ship => {
+                return resp.status(200).json({ msg: 'successful', ship });
+            })
+            .catch(err => {
+                return resp.status(400).json({ msg: 'unsuccessful' });
+            });
+    }
+);
+
 // @route POST api/ships/removeShip
 // @desc Remove ship
 // @acccess Private
@@ -129,29 +147,6 @@ router.post(
                     .status(400)
                     .json({ err, msg: 'Ship not removed from user' });
             });
-    }
-);
-
-// @route GET api/ships/getShipName
-// @desc Get ship name
-// @acccess Private
-router.get(
-    '/getShipName',
-    passport.authenticate('jwt', { session: false }),
-    (req, resp) => {
-        Ship.findById(req.body.shipId)
-            .then(ship => {
-                resp.status(200).json({
-                    name: ship.name,
-                    msg: 'Successful',
-                    id: ship._id,
-                });
-            })
-            .catch(err =>
-                resp.status(400).json({
-                    msg: 'No ship with id ' + req.body.shipId,
-                })
-            );
     }
 );
 

@@ -5,12 +5,15 @@ import { connect } from 'react-redux';
 import Spinner from '../common/Spinner';
 import { capitalize } from '../../utils/capitalize';
 import { getRouteList } from '../../actions/routeActions';
+import { getShipList } from '../../actions/shipActions';
 
 import RouteItem from './RouteItem';
 
 class RouteList extends Component {
     componentDidMount() {
         this.props.getRouteList();
+        // if(this.props.shipR.shipList.length === 0)
+        this.props.getShipList();
     }
 
     getTableHeader = head => {
@@ -20,8 +23,16 @@ class RouteList extends Component {
     };
 
     getTableBody = (headers, data) => {
+        const { shipList } = this.props.shipR;
         return data.map((item, index) => {
-            return <RouteItem headers={headers} item={item} key={item._id} />;
+            return (
+                <RouteItem
+                    headers={headers}
+                    item={item}
+                    key={item._id}
+                    shipList={shipList}
+                />
+            );
         });
     };
 
@@ -86,16 +97,19 @@ RouteList.propTypes = {
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
     routeR: PropTypes.object.isRequired,
+    shipR: PropTypes.object.isRequired,
     getRouteList: PropTypes.func.isRequired,
+    getShipList: PropTypes.func.isRequired,
 };
 
 const mapSateToProps = state => ({
     auth: state.auth,
     errors: state.errors,
     routeR: state.routeR,
+    shipR: state.shipR,
 });
 
 export default connect(
     mapSateToProps,
-    { getRouteList }
+    { getRouteList, getShipList }
 )(RouteList);

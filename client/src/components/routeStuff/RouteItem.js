@@ -18,7 +18,7 @@ class RouteItem extends Component {
 
     componentDidMount() {
         const st = this.state;
-        // st.shipName = this.findShipName(this.props.item.ship);
+        st.shipName = this.findShipName(this.props.item.ship);
         this.setState(st);
     }
 
@@ -37,7 +37,14 @@ class RouteItem extends Component {
     };
 
     findShipName = shipId => {
-        this.props.getShipName(shipId);
+        const { shipList } = this.props;
+        const ship = shipList.find(x => x._id === shipId);
+        if (ship !== undefined) {
+            return ship.name;
+        } else {
+            return 'Not found';
+        }
+        // this.props.getShipName(shipId);
         // .then(res => {
         //     return res.name;
         // })

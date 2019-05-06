@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { GET_ERRORS, PRINT_SHIP_LIST, REMOVE_SHIP, ADD_SHIP } from './types';
+import {
+    GET_ERRORS,
+    PRINT_SHIP_LIST,
+    REMOVE_SHIP,
+    ADD_SHIP,
+    GET_SHIP_NAME,
+} from './types';
 
 export const getShipList = () => dispatch => {
     axios
@@ -16,6 +22,39 @@ export const getShipList = () => dispatch => {
                 payload: err.response.data,
             })
         );
+};
+
+// export const getShipName = shipId => dispatch => {
+//     axios
+//         .get('/api/ships/getShipName', { shipId })
+//         .then(res => {
+//             console.log(res.data);
+//             dispatch({
+//                 type: GET_SHIP_NAME,
+//                 payload: res.data,
+//             });
+//             // resolve(res);
+//         })
+//         .catch(err => {
+//             console.log(err);
+//             dispatch({
+//                 type: GET_ERRORS,
+//                 payload: err.response.data,
+//             });
+//             // reject(err);
+//         });
+// };
+
+export const getShipName = shipId => dispatch => {
+    // console.log({ shipId });
+    axios
+        .get('/api/ships/getShipName', { shipId })
+        .then(res => {
+            console.log(res.data);
+        })
+        .catch(err => {
+            console.log(err);
+        });
 };
 
 export const removeShipFromUser = shipId => dispatch => {
