@@ -11,7 +11,6 @@ const middleware = [thunk];
 const composeEnhancers = composeWithDevTools({});
 
 const store = createStore(
-    // () => [],
     rootReducer,
     initialState,
     composeEnhancers(applyMiddleware(...middleware))

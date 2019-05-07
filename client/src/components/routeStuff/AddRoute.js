@@ -21,11 +21,27 @@ class AddRoute extends Component {
             toLat: '',
             toLng: '',
             shipId: '',
+            options: [],
             errors: {},
         };
     };
 
-    makeShipMenu = () => {};
+    makeShipMenu = shipList => {
+        const options = shipList.map(ship => {
+            return {
+                value: ship._id,
+                label: ship.name,
+            };
+        });
+        // console.log(options);
+        return options;
+    };
+
+    componentDidMount() {
+        this.setState({
+            options: this.makeShipMenu(this.props.shipR.shipList),
+        });
+    }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
@@ -68,13 +84,8 @@ class AddRoute extends Component {
     };
 
     render() {
-        let { errors } = this.state;
+        const { errors, options } = this.state;
 
-        const options = [
-            { value: '5ccff8625bc6642ed4e811fc', label: 'ship2' },
-            // { value: 'strawberry', label: 'Strawberry' },
-            // { value: 'vanilla', label: 'Vanilla' },
-        ];
         return (
             <div className='container'>
                 <div style={{ marginTop: '4rem' }} className='row'>
