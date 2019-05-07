@@ -8,3 +8,4 @@ export const GET_SHIP_NAME = 'GET_SHIP_NAME';
 export const ADD_ROUTE = 'ADD_ROUTE';
 export const REMOVE_ROUTE = 'REMOVE_ROUTE';
 export const PRINT_ROUTE_LIST = 'PRINT_ROUTE_LIST';
+export const VALIDATE_ROUTE = 'VALIDATE_ROUTE';

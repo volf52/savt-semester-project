@@ -22,15 +22,14 @@ router.post(
         if (!isValid) {
             return resp.status(400).json(errors);
         }
-
-        const url = `https://api.aquaplot.com/v1/route/from/${
-            req.body.fromLng
-        }/${req.body.fromLat}/to/${req.body.toLng}/${req.body.toLat}`;
         const auth = {
             username: keys.aquaplotUser,
             password: keys.aquaplotPass,
         };
 
+        const url = `https://api.aquaplot.com/v1/route/from/${
+            req.body.fromLng
+        }/${req.body.fromLat}/to/${req.body.toLng}/${req.body.toLat}`;
         axios
             .get(url, {
                 auth,
@@ -160,6 +159,45 @@ router.get(
                     msg: 'Error finding routes for user ' + req.user.name,
                 })
             );
+    }
+);
+
+// @route GET api/routing/validate
+// @desc Validate routes
+// @acccess Private
+router.post(
+    '/validate',
+    passport.authenticate('jwt', { session: false }),
+    (req, resp) => {
+        const { errors, isValid } = validateCoordInput(req.body);
+
+        if (!isValid) {
+            return resp.status(400).json(errors);
+        }
+
+        const config = {
+            headers: { 'Content-Type': 'application/json' },
+            auth: { username: keys.aquaplotUser, password: keys.aquaplotPass },
+        };
+        const dataString = `{"requests":[{ "lat": ${req.body.toLat}, "lng": ${
+            req.body.toLng
+        } }, { "lat": ${req.body.fromLat}, "lng": ${req.body.fromLng} }]}`;
+
+        axios
+            .post('https://api.aquaplot.com/v1/validate', dataString, config)
+            .then(data => {
+                if (data.data.reduce((r, x) => r && x.is_valid, true)) {
+                    return resp.status(200).json({ msg: 'successful' });
+                } else {
+                    return resp.status(400).json({ msg: 'invalid coords' });
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                return resp.status(400).json({
+                    msg: 'error occured while processing request',
+                });
+            });
     }
 );
 

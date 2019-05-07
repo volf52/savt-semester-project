@@ -6,7 +6,10 @@ import classnames from 'classnames';
 import { toast } from 'react-toastify';
 import Select from 'react-select';
 
-import { addRouteForUser } from '../../actions/routeActions';
+import {
+    addRouteForUser,
+    validateCoordinates,
+} from '../../actions/routeActions';
 
 class AddRoute extends Component {
     constructor(props) {
@@ -70,16 +73,30 @@ class AddRoute extends Component {
             toLng,
             shipId,
         };
+
         this.props
-            .addRouteForUser(routeData)
-            .then(res => {
-                this.setState(this.getInitState());
-                toast.success(res.data.msg, {
-                    position: toast.POSITION.TOP_CENTER,
-                });
+            .validateCoordinates(routeData)
+            .then(response => {
+                if (response.status === 200) {
+                    this.props
+                        .addRouteForUser(routeData)
+                        .then(res => {
+                            this.setState(this.getInitState());
+                            toast.success(res.data.msg, {
+                                position: toast.POSITION.TOP_CENTER,
+                            });
+                        })
+                        .catch(err => {
+                            toast.error("Route couldn't be added");
+                        });
+                } else {
+                    toast.error(
+                        'Invalid coordinates. Route could not be added.'
+                    );
+                }
             })
             .catch(err => {
-                toast.error("Route couldn't be added");
+                toast.error('Invalid coordinates. Route could not be added.');
             });
     };
 
@@ -205,6 +222,7 @@ class AddRoute extends Component {
 
 AddRoute.propTypes = {
     addRouteForUser: PropTypes.func.isRequired,
+    validateCoordinates: PropTypes.func.isRequired,
     errors: PropTypes.object.isRequired,
     shipR: PropTypes.object.isRequired,
 };
@@ -216,5 +234,5 @@ const mapSateToProps = state => ({
 
 export default connect(
     mapSateToProps,
-    { addRouteForUser }
+    { addRouteForUser, validateCoordinates }
 )(AddRoute);
