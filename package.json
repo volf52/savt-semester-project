@@ -16,6 +16,14 @@
         "start": "node server.js"
     },
     "keywords": [],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/volf52/savt-semester-project.git"
+    },
+    "bugs": {
+        "url": "https://github.com/volf52/savt-semester-project/issues"
+    },
+    "homepage": "https://github.com/volf52/savt-semester-project#undergrad-semester-project-for-system-analysis-and-design",
     "author": "Arslan <rslnkrmt2552@gmail.com>",
     "license": "GPL-3.0",
     "devDependencies": {
