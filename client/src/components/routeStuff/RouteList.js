@@ -10,10 +10,19 @@ import { getShipList } from '../../actions/shipActions';
 import RouteItem from './RouteItem';
 
 class RouteList extends Component {
-    componentDidMount() {
-        this.props.getRouteList();
-        // if(this.props.shipR.shipList.length === 0)
+    constructor(props) {
+        super(props);
         this.props.getShipList();
+        this.props.getRouteList();
+        this.state = {
+            ships: this.props.shipR.shipList.slice(),
+        };
+    }
+    componentDidMount() {
+        // this.props.getRouteList();
+        // if (this.props.shipR.shipList.length === 0) {
+        //     this.props.getShipList();
+        // }
     }
 
     getTableHeader = head => {
@@ -22,15 +31,15 @@ class RouteList extends Component {
         });
     };
 
-    getTableBody = (headers, data) => {
-        const { shipList } = this.props.shipR;
+    getTableBody = (headers, data, shiplist) => {
+        // const { shipList } = this.props.shipR;
         return data.map((item, index) => {
             return (
                 <RouteItem
                     headers={headers}
                     item={item}
                     key={item._id}
-                    shipList={shipList}
+                    shipList={shiplist}
                 />
             );
         });
@@ -43,6 +52,7 @@ class RouteList extends Component {
 
     render() {
         const { routeList } = this.props.routeR;
+        const { shipList } = this.props.shipR;
         const headers = [
             'total_length',
             'seca_length',
@@ -57,7 +67,7 @@ class RouteList extends Component {
             content = <p>Wait</p>;
         } else {
             const thead = this.getTableHeader(headers);
-            const tbody = this.getTableBody(headers, routeList);
+            const tbody = this.getTableBody(headers, routeList, shipList);
             content = (
                 <table className='highlight centered responsive-table z-depth-1'>
                     <thead>
