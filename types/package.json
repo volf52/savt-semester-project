@@ -1,0 +1,9 @@
+{
+    "name": "@types/app-shared-types",
+    "version": "1.0.0",
+    "description": "Shared types between backend and frontend",
+    "main": "index.d.ts",
+    "author": "Arslan <rslnkrmt2552@gmail.com>",
+    "license": "GPL-3.0",
+    "typeScriptVersion": "3"
+}

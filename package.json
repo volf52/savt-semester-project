@@ -1,21 +1,27 @@
 {
     "name": "ship-routing",
     "version": "1.0.0",
-    "description": "SAvT Semester Project",
-    "main": "server.js",
+    "private": true,
     "engines": {
-        "node": "10.15.3"
+        "node": "10.x",
+        "yarn": "1.x"
     },
+    "description": "SAvT Semester Project",
     "scripts": {
-        "client-install": "yarn --cwd client install",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "server": "nodemon server.js",
-        "client": "yarn --cwd client start",
-        "dev": "concurrently \"yarn run server\" \"yarn run client\"",
-        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn --cwd client install && yarn --cwd client run build",
-        "start": "node server.js"
+        "install": "yarn install:backend && yarn install:frontend",
+        "install:backend": "yarn --cwd backend install",
+        "install:frontend": "yarn --cwd frontend install",
+        "build": "yarn build:backend && yarn build:frontend",
+        "build:backend": "yarn --cwd backend build",
+        "build:frontend": "yarn --cwd frontend build",
+        "start": "concurrently \"yarn start:backend\" \"yarn start:frontend\"",
+        "start:backend": "yarn --cwd backend start",
+        "start:frontend": "yarn --cwd frontend start",
+        "test": "yarn test:backend && yarn test:frontend",
+        "test:backend": "yarn --cwd backend test",
+        "test:frontend": "yarn --cwd frontend test",
+        "serve": "cd backend && node build/server.js"
     },
-    "keywords": [],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/volf52/savt-semester-project.git"
@@ -27,24 +33,6 @@
     "author": "Arslan <rslnkrmt2552@gmail.com>",
     "license": "GPL-3.0",
     "devDependencies": {
-        "@babel/core": "^7.4.4",
-        "@babel/node": "^7.2.2",
-        "@babel/preset-env": "^7.4.4",
-        "concurrently": "^4.1.0",
-        "nodemon": "^1.18.11"
-    },
-    "dependencies": {
-        "axios": "^0.18.0",
-        "bcryptjs": "^2.4.3",
-        "body-parser": "^1.19.0",
-        "cors": "^2.8.5",
-        "dotenv": "^7.0.0",
-        "express": "^4.16.4",
-        "is-empty": "^1.2.0",
-        "jsonwebtoken": "^8.5.1",
-        "mongoose": "^5.5.4",
-        "passport": "^0.4.0",
-        "passport-jwt": "^4.0.0",
-        "validator": "^10.11.0"
+        "concurrently": "^4.1.0"
     }
 }

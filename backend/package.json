@@ -1,0 +1,86 @@
+{
+    "name": "ship-routing-backend",
+    "version": "1.0.0",
+    "description": "Server part",
+    "main": "./build/server.js",
+    "scripts": {
+        "build": "webpack --config webpack.config.js --mode production",
+        "build:watch": "webpack --config webpack.config.js --watch --mode development",
+        "test": "jest --coverage --colors",
+        "test:watch": "jest --coverage --colors --watchAll",
+        "start": "webpack --watch",
+        "type-check": "tsc",
+        "type-check:watch": "yarn run check-types -- --watch"
+    },
+    "jest": {
+        "moduleFileExtensions": [
+            "ts",
+            "js"
+        ],
+        "transform": {
+            "^.+\\.(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
+        },
+        "testMatch": [
+            "/**/*.test.ts"
+        ],
+        "collectCoverageFrom": [
+            "**/*.ts",
+            "!**/*.d.ts",
+            "!server/server.ts",
+            "!server/app.ts",
+            "!scripts/*"
+        ]
+    },
+    "author": "Arslan <rslnkrmt2552@gmail.com>",
+    "license": "GPL-3.0",
+    "devDependencies": {
+        "@babel/cli": "^7.4.4",
+        "@babel/core": "^7.4.4",
+        "@babel/plugin-proposal-class-properties": "^7.4.4",
+        "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+        "@babel/preset-env": "^7.4.4",
+        "@babel/preset-typescript": "^7.3.3",
+        "@types/app-shared-types": "link:../types",
+        "@types/body-parser": "^1.17.0",
+        "@types/dotenv": "^6.1.1",
+        "@types/express": "^4.16.1",
+        "@types/express-jwt": "^0.0.42",
+        "@types/jest": "^24.0.12",
+        "@types/jsonwebtoken": "^8.3.2",
+        "@types/lodash": "^4.14.125",
+        "@types/mongodb-memory-server": "^1.8.0",
+        "@types/mongoose": "^5.5.0",
+        "@types/node": "^12.0.0",
+        "@types/passport": "^1.0.0",
+        "@types/passport-local": "^1.0.33",
+        "@types/supertest": "^2.0.7",
+        "babel-loader": "^8.0.5",
+        "chalk": "^2.4.2",
+        "jest": "^24.8.0",
+        "mongodb-memory-server": "^5.1.1",
+        "nodemon-webpack-plugin": "^4.0.8",
+        "supertest": "^4.0.2",
+        "ts-jest": "^24.0.2",
+        "ts-node": "^8.1.0",
+        "tslint": "^5.16.0",
+        "typescript": "^3.4.5",
+        "webpack": "^4.31.0",
+        "webpack-cli": "^3.3.2"
+    },
+    "dependencies": {
+        "axios": "^0.18.0",
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.19.0",
+        "dotenv": "^8.0.0",
+        "dotenv-webpack": "^1.7.0",
+        "express": "^4.16.4",
+        "is-empty": "^1.2.0",
+        "jsonwebtoken": "^8.5.1",
+        "lodash": "^4.17.11",
+        "mongoose": "^5.5.4",
+        "passport": "^0.4.0",
+        "passport-jwt": "^4.0.0",
+        "passport-local": "^1.0.0",
+        "validator": "^10.11.0"
+    }
+}

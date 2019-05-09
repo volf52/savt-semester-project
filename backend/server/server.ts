@@ -4,9 +4,10 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
 
-// const users = require('./routes/api/users');
 const { users, ships, routing } = require('./routes/api');
 const app = express();
+
+console.log(process.env.PORT);
 
 // Bodyparser middleware
 app.use(
@@ -35,13 +36,12 @@ require('./config/passport')(passport);
 app.use('/api/users', users);
 app.use('/api/ships', ships);
 app.use('/api/routing', routing);
-
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'client', 'build')));
+    app.use(express.static(path.join('..', 'frontend', 'build')));
     app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+        res.sendFile(path.resolve('..', 'frontend', 'build', 'index.html'));
     });
 }
 
-const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
+const port = process.env.PORT;
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
