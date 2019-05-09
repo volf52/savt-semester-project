@@ -20,7 +20,8 @@
         "test": "yarn test:backend && yarn test:frontend",
         "test:backend": "yarn --cwd backend test",
         "test:frontend": "yarn --cwd frontend test",
-        "serve": "cd backend && node build/server.js"
+        "serve": "cd backend && node build/server.js",
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn build"
     },
     "repository": {
         "type": "git",
