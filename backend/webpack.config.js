@@ -4,6 +4,10 @@ const NodemonPlugin = require('nodemon-webpack-plugin');
 const DotEnv = require('dotenv-webpack');
 
 const nodeModules = {};
+const dotenvConfig = { systemvars: true };
+if (process.env.NODE_ENV !== 'production') {
+    dotenvConfig.path = path.join(__dirname, '.env');
+}
 fs.readdirSync('node_modules')
     .filter(function(x) {
         return ['.bin'].indexOf(x) === -1;
@@ -33,12 +37,6 @@ module.exports = {
     },
     target: 'node',
     externals: nodeModules,
-    plugins: [
-        new DotEnv({
-            path: path.join(__dirname, '.env'),
-            systemvars: true,
-        }),
-        new NodemonPlugin(),
-    ],
+    plugins: [new DotEnv(dotenvConfig), new NodemonPlugin()],
     mode: 'none',
 };

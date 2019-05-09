@@ -7,8 +7,6 @@ const path = require('path');
 const { users, ships, routing } = require('./routes/api');
 const app = express();
 
-console.log(process.env.PORT);
-
 // Bodyparser middleware
 app.use(
     bodyParser.urlencoded({

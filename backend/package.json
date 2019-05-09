@@ -34,12 +34,6 @@
     "author": "Arslan <rslnkrmt2552@gmail.com>",
     "license": "GPL-3.0",
     "devDependencies": {
-        "@babel/cli": "^7.4.4",
-        "@babel/core": "^7.4.4",
-        "@babel/plugin-proposal-class-properties": "^7.4.4",
-        "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
-        "@babel/preset-env": "^7.4.4",
-        "@babel/preset-typescript": "^7.3.3",
         "@types/app-shared-types": "link:../types",
         "@types/body-parser": "^1.17.0",
         "@types/dotenv": "^6.1.1",
@@ -54,21 +48,22 @@
         "@types/passport": "^1.0.0",
         "@types/passport-local": "^1.0.33",
         "@types/supertest": "^2.0.7",
-        "babel-loader": "^8.0.5",
         "chalk": "^2.4.2",
         "jest": "^24.8.0",
-        "mongodb-memory-server": "^5.1.1",
-        "nodemon-webpack-plugin": "^4.0.8",
         "supertest": "^4.0.2",
         "ts-jest": "^24.0.2",
         "ts-node": "^8.1.0",
-        "tslint": "^5.16.0",
-        "typescript": "^3.4.5",
-        "webpack": "^4.31.0",
-        "webpack-cli": "^3.3.2"
+        "tslint": "^5.16.0"
     },
     "dependencies": {
+        "@babel/cli": "^7.4.4",
+        "@babel/core": "^7.4.4",
+        "@babel/plugin-proposal-class-properties": "^7.4.4",
+        "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+        "@babel/preset-env": "^7.4.4",
+        "@babel/preset-typescript": "^7.3.3",
         "axios": "^0.18.0",
+        "babel-loader": "^8.0.5",
         "bcryptjs": "^2.4.3",
         "body-parser": "^1.19.0",
         "dotenv": "^8.0.0",
@@ -78,9 +73,13 @@
         "jsonwebtoken": "^8.5.1",
         "lodash": "^4.17.11",
         "mongoose": "^5.5.4",
+        "nodemon-webpack-plugin": "^4.0.8",
         "passport": "^0.4.0",
         "passport-jwt": "^4.0.0",
         "passport-local": "^1.0.0",
-        "validator": "^10.11.0"
+        "typescript": "^3.4.5",
+        "validator": "^10.11.0",
+        "webpack": "^4.31.0",
+        "webpack-cli": "^3.3.2"
     }
 }
