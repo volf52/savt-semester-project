@@ -6,11 +6,12 @@
     "scripts": {
         "build": "webpack --config webpack.config.js --mode production",
         "build:watch": "webpack --config webpack.config.js --watch --mode development",
+        "build:types": "tsc --emitDeclarationOnly",
         "test": "jest --coverage --colors",
         "test:watch": "jest --coverage --colors --watchAll",
         "start": "webpack --watch",
-        "type-check": "tsc",
-        "type-check:watch": "yarn run check-types -- --watch"
+        "type-check": "tsc --noEmit",
+        "type-check:watch": "yarn run type-check -- --watch"
     },
     "jest": {
         "moduleFileExtensions": [
