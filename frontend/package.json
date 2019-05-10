@@ -5,11 +5,6 @@
     "license": "GPL-3.0",
     "private": true,
     "dependencies": {
-        "@types/jest": "^24.0.12",
-        "@types/node": "^12.0.0",
-        "@types/react": "^16.8.17",
-        "@types/react-dom": "^16.8.4",
-        "@types/react-redux": "^7.0.8",
         "axios": "^0.18.0",
         "classnames": "^2.2.6",
         "is-empty": "^1.2.0",
@@ -30,7 +25,9 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "typecheck": "tsc --noEmit",
+        "typecheck:watch": "yarn run typecheck --watch"
     },
     "proxy": "http://localhost:5000",
     "eslintConfig": {
@@ -47,5 +44,13 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "@types/app-shared-types": "link:../types",
+        "@types/jest": "^24.0.12",
+        "@types/node": "^12.0.0",
+        "@types/react": "^16.8.17",
+        "@types/react-dom": "^16.8.4",
+        "@types/react-redux": "^7.0.8"
     }
 }

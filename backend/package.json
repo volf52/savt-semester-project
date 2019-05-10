@@ -10,8 +10,8 @@
         "test": "jest --coverage --colors",
         "test:watch": "jest --coverage --colors --watchAll",
         "start": "webpack --watch",
-        "type-check": "tsc --noEmit",
-        "type-check:watch": "yarn run type-check -- --watch"
+        "typecheck": "tsc --noEmit",
+        "typecheck:watch": "yarn run typecheck --watch"
     },
     "jest": {
         "moduleFileExtensions": [
