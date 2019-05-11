@@ -88,7 +88,7 @@ class RouteResults extends Component {
                                     <i className='material-icons left'>
                                         keyboard_backspace
                                     </i>{' '}
-                                    Route List
+                                    Route History
                                 </Link>
                             </li>
                             <li className='collection-header'>

@@ -110,7 +110,7 @@ class AddRoute extends Component {
                             <i className='material-icons left'>
                                 keyboard_backspace
                             </i>{' '}
-                            Back to Route List
+                            Back to Route History
                         </Link>
                         <div
                             className='col s12'
