@@ -2,6 +2,7 @@ import { PRINT_ROUTE_LIST, REMOVE_ROUTE, ADD_ROUTE } from '../actions/types';
 
 const initialState = {
     routeList: [],
+    currentRoute: {},
 };
 
 export default function(state = initialState, action) {
@@ -19,7 +20,10 @@ export default function(state = initialState, action) {
                 ),
             };
         case ADD_ROUTE:
-            return state;
+            return {
+                ...state,
+                currentRoute: action.payload,
+            };
         default:
             return state;
     }

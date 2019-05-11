@@ -85,18 +85,17 @@ class AddRoute extends Component {
                             toast.success(res.data.msg, {
                                 position: toast.POSITION.TOP_CENTER,
                             });
+                            this.props.history.push('/currentRoute');
                         })
                         .catch(err => {
                             toast.error("Route couldn't be added");
                         });
                 } else {
-                    toast.error(
-                        'Invalid coordinates. Route could not be added.'
-                    );
+                    toast.error('Invalid input. Route could not be added.');
                 }
             })
             .catch(err => {
-                toast.error('Invalid coordinates. Route could not be added.');
+                toast.error('Invalid input. Route could not be added.');
             });
     };
 

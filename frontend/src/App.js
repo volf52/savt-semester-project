@@ -18,6 +18,7 @@ import ShipList from './components/shipStuff/ShipList';
 import AddShip from './components/shipStuff/AddShip';
 import AddRoute from './components/routeStuff/AddRoute';
 import RouteList from './components/routeStuff/RouteList';
+import RouteResults from './components/routeStuff/RouteResults';
 
 import store from './store';
 
@@ -70,6 +71,11 @@ class App extends Component {
                                 exact
                                 path='/addRoute'
                                 component={AddRoute}
+                            />
+                            <PrivateRoute
+                                exact
+                                path='/currentRoute'
+                                component={RouteResults}
                             />
                         </Switch>
                     </div>

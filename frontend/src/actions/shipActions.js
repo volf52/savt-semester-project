@@ -1,11 +1,5 @@
 import axios from 'axios';
-import {
-    GET_ERRORS,
-    PRINT_SHIP_LIST,
-    REMOVE_SHIP,
-    ADD_SHIP,
-    GET_SHIP_NAME,
-} from './types';
+import { GET_ERRORS, PRINT_SHIP_LIST, REMOVE_SHIP, ADD_SHIP } from './types';
 
 export const getShipList = () => dispatch => {
     axios
