@@ -1,4 +1,9 @@
-import { PRINT_ROUTE_LIST, REMOVE_ROUTE, ADD_ROUTE } from '../actions/types';
+import {
+    PRINT_ROUTE_LIST,
+    REMOVE_ROUTE,
+    ADD_ROUTE,
+    SET_CURRENT_ROUTE,
+} from '../actions/types';
 
 const initialState = {
     routeList: [],
@@ -20,6 +25,11 @@ export default function(state = initialState, action) {
                 ),
             };
         case ADD_ROUTE:
+            return {
+                ...state,
+                currentRoute: action.payload,
+            };
+        case SET_CURRENT_ROUTE:
             return {
                 ...state,
                 currentRoute: action.payload,

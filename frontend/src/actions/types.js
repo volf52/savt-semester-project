@@ -9,4 +9,4 @@ export const ADD_ROUTE = 'ADD_ROUTE';
 export const REMOVE_ROUTE = 'REMOVE_ROUTE';
 export const PRINT_ROUTE_LIST = 'PRINT_ROUTE_LIST';
 export const VALIDATE_ROUTE = 'VALIDATE_ROUTE';
-// export const PRINT_ROUTE = 'PRINT_ROUTE';
+export const SET_CURRENT_ROUTE = 'SET_CURRENT_ROUTE';

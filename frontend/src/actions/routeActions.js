@@ -1,9 +1,11 @@
 import axios from 'axios';
+import isEmpty from 'is-empty';
 import {
     PRINT_ROUTE_LIST,
     REMOVE_ROUTE,
     ADD_ROUTE,
     VALIDATE_ROUTE,
+    SET_CURRENT_ROUTE,
     GET_ERRORS,
 } from '../actions/types';
 
@@ -103,4 +105,18 @@ export const validateCoordinates = routeData => dispatch => {
                 reject(err);
             });
     });
+};
+
+export const setCurrentRoute = routeResult => dispatch => {
+    if (!isEmpty(routeResult)) {
+        dispatch({
+            type: SET_CURRENT_ROUTE,
+            payload: routeResult,
+        });
+    } else {
+        dispatch({
+            type: GET_ERRORS,
+            payload: { msg: 'Empty route result' },
+        });
+    }
 };

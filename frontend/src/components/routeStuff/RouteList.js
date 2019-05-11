@@ -33,6 +33,7 @@ class RouteList extends Component {
 
     getTableBody = (headers, data, shiplist) => {
         // const { shipList } = this.props.shipR;
+
         return data.map((item, index) => {
             return (
                 <RouteItem
@@ -40,6 +41,7 @@ class RouteList extends Component {
                     item={item}
                     key={item._id}
                     shipList={shiplist}
+                    history={this.props.history}
                 />
             );
         });
@@ -75,6 +77,7 @@ class RouteList extends Component {
                             <th>Ship Name</th>
                             {thead}
                             <th>Remove</th>
+                            <th>Print</th>
                         </tr>
                     </thead>
                     <tbody>{tbody}</tbody>

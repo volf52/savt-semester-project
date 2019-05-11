@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { removeRouteFromUser } from '../../actions/routeActions';
-import { getShipName } from '../../actions/shipActions';
+import {
+    removeRouteFromUser,
+    setCurrentRoute,
+} from '../../actions/routeActions';
 
 class RouteItem extends Component {
     constructor(props) {
@@ -36,6 +38,12 @@ class RouteItem extends Component {
             });
     };
 
+    handlePrintClick = e => {
+        e.preventDefault();
+        this.props.setCurrentRoute(this.props.item);
+        this.props.history.push('/currentRoute');
+    };
+
     findShipName = shipId => {
         const { shipList } = this.props;
         const ship = shipList.find(x => x._id === shipId);
@@ -44,14 +52,6 @@ class RouteItem extends Component {
         } else {
             return 'Not found';
         }
-        // this.props.getShipName(shipId);
-        // .then(res => {
-        //     return res.name;
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        //     return 'Not found';
-        // });
     };
 
     render() {
@@ -72,6 +72,13 @@ class RouteItem extends Component {
                         <i className='material-icons red'>remove</i>
                     </button>
                 </td>
+                <td>
+                    <button
+                        className='btn-floating'
+                        onClick={this.handlePrintClick}>
+                        <i className='material-icons blue'>send</i>
+                    </button>
+                </td>
             </tr>
         );
     }
@@ -79,7 +86,7 @@ class RouteItem extends Component {
 
 RouteItem.propTypes = {
     removeRouteFromUser: PropTypes.func.isRequired,
-    getShipName: PropTypes.func.isRequired,
+    setCurrentRoute: PropTypes.func.isRequired,
 };
 
 const mapStatesToProps = state => ({
@@ -88,5 +95,5 @@ const mapStatesToProps = state => ({
 
 export default connect(
     mapStatesToProps,
-    { removeRouteFromUser, getShipName }
+    { removeRouteFromUser, setCurrentRoute }
 )(RouteItem);
