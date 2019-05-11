@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import isEmpty from 'is-empty';
 
@@ -80,6 +81,16 @@ class RouteResults extends Component {
                 <div style={{ marginTop: '4rem' }} className='row'>
                     <div className='col s10 offset-s1'>
                         <ul className='highlight collection with-header z-depth-2'>
+                            <li className='collection-header'>
+                                <Link
+                                    to='/routes'
+                                    className='btn-flat waves-effect'>
+                                    <i className='material-icons left'>
+                                        keyboard_backspace
+                                    </i>{' '}
+                                    Route List
+                                </Link>
+                            </li>
                             <li className='collection-header'>
                                 <h4>Result</h4>
                             </li>
