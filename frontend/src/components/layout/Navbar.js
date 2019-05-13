@@ -30,7 +30,10 @@ class Navbar extends Component {
         const authLinks = (
             <ul id='nav-mobile' className='right hide-on-med-and-down'>
                 <li>
-                    <Link className='black-text' onClick={this.onLogoutClick}>
+                    <Link
+                        className='black-text'
+                        onClick={this.onLogoutClick}
+                        to='/'>
                         Logout
                     </Link>
                 </li>

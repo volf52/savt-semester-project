@@ -57,7 +57,8 @@ class RouteResults extends Component {
         if (isEmpty(currentRoute)) {
             content = (
                 <li className='collection-item'>
-                    Click the button below to add a route
+                    Click the button below to add a route or go{' '}
+                    <Link to='/routes'>here</Link> to print one
                 </li>
             );
             button = (
