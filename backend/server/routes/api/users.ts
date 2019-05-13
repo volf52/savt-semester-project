@@ -1,20 +1,16 @@
-const express = require('express');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const passport = require('passport');
-const keys = require('../../config/keys');
-
-const router = express.Router();
-
-// Load input validation
-const {
-    validateLoginInput,
-    validateRegisterInput,
-} = require('../../validation');
+import bcrypt from 'bcryptjs';
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import passport from 'passport';
+import keys from '../../config/keys';
 
 // Load user model
-// const User = require('../../models/User');
-const { User } = require('../../models');
+import { User } from '../../models';
+
+// Load input validation
+import { validateLoginInput, validateRegisterInput } from '../../validation';
+
+const router = express.Router();
 
 // @route POST api/users/register
 // @desc Register user
@@ -81,7 +77,7 @@ router.post('/login', (req, resp) => {
 
                 jwt.sign(
                     payload,
-                    keys.secretKey,
+                    keys.secretKey as string,
                     { expiresIn: 86400 }, // one day
                     (err, token) => {
                         resp.json({
@@ -115,4 +111,4 @@ router.get(
     }
 );
 
-module.exports = router;
+export default router;

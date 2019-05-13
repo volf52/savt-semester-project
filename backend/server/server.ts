@@ -1,10 +1,10 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const passport = require('passport');
-const path = require('path');
+import bodyParser from 'body-parser';
+import express from 'express';
+import mongoose from 'mongoose';
+import passport from 'passport';
+import path from 'path';
+import { routingRouter, shipRouter, userRouter } from './routes/api';
 
-const { users, ships, routing } = require('./routes/api');
 const app = express();
 
 // Bodyparser middleware
@@ -31,9 +31,10 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 // Routes
-app.use('/api/users', users);
-app.use('/api/ships', ships);
-app.use('/api/routing', routing);
+app.use('/api/users', userRouter);
+app.use('/api/ships', shipRouter);
+app.use('/api/routing', routingRouter);
+
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join('..', 'frontend', 'build')));
     app.get('*', (req, res) => {

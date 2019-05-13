@@ -1,7 +1,15 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import { Document, model, Schema } from 'mongoose';
 
-const ShipSchema = Schema({
+export interface ShipDoc extends Document {
+    name: string;
+    length: string;
+    width: string;
+    speed: string;
+    draft: string;
+    owner: string;
+}
+
+const ShipSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -28,13 +36,4 @@ const ShipSchema = Schema({
     },
 });
 
-// ShipSchema.pre('remove', next => {
-//     console.log('Removing');
-//     this.model('users').updateOne(
-//         { _id: this.owner },
-//         { $pull: { ships: this._id } },
-//         next
-//     );
-// });
-
-module.exports = Ship = mongoose.model('ships', ShipSchema);
+export const Ship = model<ShipDoc>('ships', ShipSchema);

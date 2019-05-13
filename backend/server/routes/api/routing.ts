@@ -1,12 +1,9 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const passport = require('passport');
-const axios = require('axios');
-
-const { validateCoordInput } = require('../../validation');
-const keys = require('../../config/keys');
-
-const { RouteObj } = require('../../models');
+import axios, { AxiosRequestConfig } from 'axios';
+import express from 'express';
+import passport from 'passport';
+import keys from '../../config/keys';
+import { RouteObj, User } from '../../models';
+import { validateCoordInput } from '../../validation';
 
 const router = express.Router();
 
@@ -33,7 +30,7 @@ router.post(
         axios
             .get(url, {
                 auth,
-            })
+            } as AxiosRequestConfig)
             .then(response => {
                 // console.log(response.data.features[0].properties);
                 const tmp = response.data.features[0].properties;
@@ -152,7 +149,9 @@ router.get(
         User.findById(req.user.id)
             .populate('routes')
             .then(routes => {
-                resp.status(200).json(routes.routes);
+                if (routes) {
+                    resp.status(200).json(routes.routes);
+                }
             })
             .catch(err =>
                 resp.status(400).json({
@@ -178,7 +177,7 @@ router.post(
         const config = {
             headers: { 'Content-Type': 'application/json' },
             auth: { username: keys.aquaplotUser, password: keys.aquaplotPass },
-        };
+        } as AxiosRequestConfig;
         const dataString = `{"requests":[{ "lat": ${req.body.toLat}, "lng": ${
             req.body.toLng
         } }, { "lat": ${req.body.fromLat}, "lng": ${req.body.fromLng} }]}`;
@@ -186,7 +185,13 @@ router.post(
         axios
             .post('https://api.aquaplot.com/v1/validate', dataString, config)
             .then(data => {
-                if (data.data.reduce((r, x) => r && x.is_valid, true)) {
+                if (
+                    data.data.reduce(
+                        (r: boolean, x: { is_valid: boolean }) =>
+                            r && x.is_valid,
+                        true
+                    )
+                ) {
                     return resp.status(200).json({ msg: 'successful' });
                 } else {
                     return resp.status(400).json({ msg: 'invalid coords' });
@@ -201,4 +206,4 @@ router.post(
     }
 );
 
-module.exports = router;
+export default router;

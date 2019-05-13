@@ -1,11 +1,9 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const passport = require('passport');
+import express from 'express';
+import passport from 'passport';
+import { Ship, User } from '../../models';
+import { validateAddShipInput } from '../../validation';
 
 const router = express.Router();
-
-const { User, Ship } = require('../../models');
-const { validateAddShipInput } = require('../../validation');
 
 // @route POST api/ships/addShip
 // @desc Add ship for a user
@@ -42,7 +40,7 @@ router.post(
                     .then(ship =>
                         User.findById(req.user.id).then(owner => {
                             if (owner) {
-                                owner.ships.push(ship);
+                                owner.ships.push(ship._id);
                                 owner
                                     .save()
                                     .then(shipowner => {
@@ -84,7 +82,9 @@ router.get(
         User.findById(req.user.id)
             .populate('ships')
             .then(ships => {
-                resp.status(200).json(ships.ships);
+                if (ships) {
+                    resp.status(200).json(ships.ships);
+                }
             })
             .catch(err =>
                 resp.status(400).json({
@@ -150,4 +150,4 @@ router.post(
     }
 );
 
-module.exports = router;
+export default router;

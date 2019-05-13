@@ -1,8 +1,15 @@
-const Validator = require('validator');
-const isEmpty = require('is-empty');
+import isEmpty from 'is-empty';
+import Validator from 'validator';
 
-module.exports = function validateRegisterInput(data) {
-    let errors = {};
+export type RegisterData = {
+    name: string;
+    email: string;
+    password: string;
+    password2: string;
+};
+
+export const validateRegisterInput = (data: RegisterData) => {
+    const errors = <RegisterData>{};
 
     data.name = !isEmpty(data.name) ? data.name : '';
     data.email = !isEmpty(data.email) ? data.email : '';

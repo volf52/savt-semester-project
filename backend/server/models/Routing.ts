@@ -1,7 +1,27 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import { Document, model, Schema } from 'mongoose';
 
-const RouteSchema = Schema({
+export interface RoutingDoc extends Document {
+    user: string;
+    ship: Array<string>;
+    departure: {
+        lat: string;
+        lng: string;
+    };
+    arrival: {
+        lat: string;
+        lng: string;
+    };
+    encodedGeoJson: string;
+    geoURL: string;
+    date: Date;
+    total_length: string;
+    seca_length: string;
+    hra_length: string;
+    arrivalUtc: string;
+    durationHours: string;
+}
+
+const RouteSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'users',
@@ -53,4 +73,4 @@ const RouteSchema = Schema({
     },
 });
 
-module.exports = RouteObj = mongoose.model('routes', RouteSchema);
+export const RouteObj = model<RoutingDoc>('routes', RouteSchema);

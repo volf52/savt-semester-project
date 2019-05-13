@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     mongoURI: process.env['MONGODB_URI'],
     secretKey: process.env['SECRET_KEY'],
     aquaplotUser: process.env['AQUAPLOT_USER'],

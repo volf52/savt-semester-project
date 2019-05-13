@@ -1,9 +1,5 @@
-const users = require('./users');
-const ships = require('./ships');
-const routing = require('./routing');
+import userRouter from './users';
+import shipRouter from './ships';
+import routingRouter from './routing';
 
-module.exports = {
-    users,
-    ships,
-    routing,
-};
+export { userRouter, shipRouter, routingRouter };

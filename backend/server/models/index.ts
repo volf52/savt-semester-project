@@ -1,9 +1,5 @@
-const User = require('./User');
-const Ship = require('./Ship');
-const RouteObj = require('./Routing');
+import { RouteObj, RoutingDoc } from './Routing';
+import { Ship, ShipDoc } from './Ship';
+import { User, UserDoc } from './User';
 
-module.exports = {
-    User,
-    Ship,
-    RouteObj,
-};
+export { User, UserDoc, Ship, ShipDoc, RouteObj, RoutingDoc };

@@ -1,11 +1,15 @@
-const validateRegisterInput = require('./register');
-const validateLoginInput = require('./login');
-const validateAddShipInput = require('./addShip');
-const validateCoordInput = require('./getRoute');
+import { AddShipData, validateAddShipInput } from './addShip';
+import { AddRouteData, validateCoordInput } from './getRoute';
+import { LoginData, validateLoginInput } from './login';
+import { RegisterData, validateRegisterInput } from './register';
 
-module.exports = {
+export {
     validateLoginInput,
+    LoginData,
     validateRegisterInput,
+    RegisterData,
     validateAddShipInput,
+    AddShipData,
     validateCoordInput,
+    AddRouteData,
 };

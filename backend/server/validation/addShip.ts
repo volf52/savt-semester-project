@@ -1,8 +1,16 @@
-const Validator = require('validator');
-const isEmpty = require('is-empty');
+import isEmpty from 'is-empty';
+import Validator from 'validator';
 
-module.exports = function validateAddShipInput(data) {
-    let errors = {};
+export type AddShipData = {
+    name: string;
+    length: string;
+    width: string;
+    speed: string;
+    draft: string;
+};
+
+export const validateAddShipInput = (data: AddShipData) => {
+    let errors = <AddShipData>{};
 
     data.name = !isEmpty(data.name) ? data.name : '';
     data.length = !isEmpty(data.length) ? data.length : '';

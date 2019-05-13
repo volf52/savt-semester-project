@@ -1,8 +1,16 @@
-const Validator = require('validator');
-const isEmpty = require('is-empty');
+import isEmpty from 'is-empty';
+import Validator from 'validator';
 
-module.exports = function validateCoordInput(data) {
-    let errors = {};
+export type AddRouteData = {
+    fromLat: string;
+    fromLng: string;
+    toLat: string;
+    toLng: string;
+    shipId: string;
+};
+
+export const validateCoordInput = (data: AddRouteData) => {
+    let errors = <AddRouteData>{};
 
     data.fromLat = !isEmpty(data.fromLat) ? data.fromLat : '';
     data.fromLng = !isEmpty(data.fromLng) ? data.fromLng : '';
@@ -11,7 +19,7 @@ module.exports = function validateCoordInput(data) {
     data.shipId = !isEmpty(data.shipId) ? data.shipId : '';
 
     if (Validator.isEmpty(data.shipId)) {
-        errors.ship = 'Ship is required for a journey through the sea';
+        errors.shipId = 'Ship is required for a journey through the sea';
     }
 
     if (Validator.isEmpty(data.fromLat)) {
