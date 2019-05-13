@@ -7,7 +7,7 @@ import {
 } from 'passport-jwt';
 import keys from './keys';
 
-const User = mongoose.model('users');
+import { User } from '../models';
 
 const opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

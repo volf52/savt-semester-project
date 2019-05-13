@@ -3,6 +3,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import path from 'path';
+import keys from './config/keys';
+import passportInit from './config/passport';
 import { routingRouter, shipRouter, userRouter } from './routes/api';
 
 const app = express();
@@ -16,7 +18,7 @@ app.use(
 app.use(bodyParser.json());
 
 // DB Config
-const db = require('./config/keys').mongoURI;
+const db = keys.mongoURI as string;
 
 // Connect to MongoDB
 mongoose
@@ -28,7 +30,7 @@ mongoose
 app.use(passport.initialize());
 
 // Passport config
-require('./config/passport')(passport);
+passportInit(passport);
 
 // Routes
 app.use('/api/users', userRouter);
