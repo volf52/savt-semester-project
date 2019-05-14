@@ -14,7 +14,7 @@ class RouteResults extends Component {
         );
         res.push(
             <li className='collection-item' key='total_length'>
-                <b>Total Length:</b> {routeRes.total_length}
+                <b>Total Length (Nautical miles):</b> {routeRes.total_length}
             </li>
         );
         res.push(
