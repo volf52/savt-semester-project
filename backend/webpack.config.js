@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
+const webpack = require('webpack');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const DotEnv = require('dotenv-webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const nodeModules = {};
 const dotenvConfig = { systemvars: true };
@@ -38,5 +40,20 @@ module.exports = {
     target: 'node',
     externals: nodeModules,
     plugins: [new DotEnv(dotenvConfig), new NodemonPlugin()],
+    optimization: {
+        minimizer: [
+            // we specify a custom UglifyJsPlugin here to get source maps in production
+            new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                uglifyOptions: {
+                    compress: false,
+                    ecma: 6,
+                    mangle: true,
+                },
+                sourceMap: true,
+            }),
+        ],
+    },
     mode: 'none',
 };
