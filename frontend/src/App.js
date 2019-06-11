@@ -28,9 +28,11 @@ if (localStorage.jwtToken) {
     const decoded = jwt_decode(token);
     store.dispatch(setCurrentUser(decoded));
 
-    const currentTime = Date.now() / 1000; // ms
+    const currentTime = Date.now() / 1000; // seconds
+    console.log(currentTime);
     if (decoded.expiresIn < currentTime) {
-        store.dispatch(logoutUser());
+        // store.dispatch(logoutUser());
+        logoutUser();
         window.location.href = './login';
     }
 }
