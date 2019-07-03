@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { loginUser } from '../../actions/authActions';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { loginUser } from '../../actions/authActions';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -109,6 +109,23 @@ class Login extends Component {
                                     {errors.password}
                                     {errors.passwordIncorrect}
                                 </span>
+                            </div>
+                            <div
+                                className='col s12'
+                                style={{ paddingLeft: '11.250px' }}>
+                                <a href='http://localhost:5000/social/github'>
+                                    <button
+                                        style={{
+                                            width: '150px',
+                                            borderRadius: '3px',
+                                            letterSpacing: '1.5px',
+                                            marginTop: '1rem',
+                                        }}
+                                        type='button'
+                                        className='btn waves-effect waves-light'>
+                                        Github
+                                    </button>
+                                </a>
                             </div>
                             <div
                                 className='col s12'

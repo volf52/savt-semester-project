@@ -21,6 +21,7 @@ import RouteList from './components/routeStuff/RouteList';
 import RouteResults from './components/routeStuff/RouteResults';
 
 import store from './store';
+import github from './components/auth/github';
 
 if (localStorage.jwtToken) {
     const token = localStorage.jwtToken;
@@ -45,10 +46,19 @@ class App extends Component {
                     <div className='App'>
                         <ToastContainer />
                         <Navbar />
-                        <Route exact path='/' component={Landing} />
-                        <Route exact path='/register' component={Register} />
-                        <Route exact path='/login' component={Login} />
                         <Switch>
+                            <Route exact path='/' component={Landing} />
+                            <Route
+                                exact
+                                path='/register'
+                                component={Register}
+                            />
+                            <Route exact path='/login' component={Login} />
+                            <Route
+                                // exact
+                                path='/social/github/callback'
+                                component={github}
+                            />
                             <PrivateRoute
                                 exact
                                 path='/dashboard'

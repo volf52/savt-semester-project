@@ -7,6 +7,10 @@ export interface UserDoc extends Document {
     date: Date;
     ships: Array<string>;
     routes: Array<string>;
+    github: {
+        token: string;
+        createdAt: Date;
+    };
 }
 
 // Create the schema
@@ -39,6 +43,15 @@ const UserSchema = new Schema({
             ref: 'routes',
         },
     ],
+    github: {
+        type: {
+            token: { type: Schema.Types.String, trim: true },
+            createdAt: {
+                type: Schema.Types.Date,
+                default: Date.now,
+            },
+        },
+    },
 });
 
 export const User = model<UserDoc>('users', UserSchema);
