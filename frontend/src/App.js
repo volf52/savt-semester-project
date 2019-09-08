@@ -30,7 +30,7 @@ if (localStorage.jwtToken) {
     store.dispatch(setCurrentUser(decoded));
 
     const currentTime = Date.now() / 1000; // seconds
-    console.log(currentTime);
+    // console.log(currentTime);
     if (decoded.expiresIn < currentTime) {
         // store.dispatch(logoutUser());
         logoutUser();
