@@ -34,6 +34,6 @@
     "author": "Arslan <rslnkrmt2552@gmail.com>",
     "license": "GPL-3.0",
     "devDependencies": {
-        "concurrently": "^4.1.0"
+        "concurrently": "^5.0.0"
     }
 }
